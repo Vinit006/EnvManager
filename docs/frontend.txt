@@ -1,0 +1,20 @@
+/*------------------------------------
+Side bar
+--------------------------------------*/
+1. all project button
+2. project shown by recently
+
+
+*------------------------------------
+Navbar should have
+--------------------------------------*/
+1. avatar and username button
+
+
+/*------------------------------------
+Pages in dashboard
+--------------------------------------*/
+1. all project   -> show all project
+2. project/:id   -> show env files in this project by p_id
+3. project/:id/:env_id  -> for specific env 
+

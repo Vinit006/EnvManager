@@ -1,0 +1,15 @@
+/*------------------------------------
+Schemas
+--------------------------------------*/
+
+/*------------------------------------
+Feature i need in app
+--------------------------------------*/
+
+1. Env file can be downloaded from button (download button)
+2. Each project can have more than 1 env file 
+3. Each env file should have a title name to identify (not primary key)
+4. a user can have multiple project 
+5. auth should be only username and password
+6. when creating a env., it can be easy to copy and past env in those env files
+7. env file should have copy button also
