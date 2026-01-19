@@ -5,6 +5,7 @@ export type Project_card_item = {
 }
 
 export type EnvFileType = {
+     _id: string,
      name: string,
-      
+     content: string
 }
