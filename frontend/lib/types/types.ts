@@ -9,3 +9,8 @@ export type EnvFileType = {
      name: string,
      content: string
 }
+export type Todo = {
+  id: number;
+  title: string;
+  completed: boolean;
+};
