@@ -6,11 +6,12 @@ import {
   register,
 } from "../controllers/auth.controller.js";
 import { secure } from "../middlewares/auth.middleware.js";
+import { loginRateLimiter } from "../middlewares/ratelimit.middleware.js";
 
 const router = Router();
 
 router.post("/register", register);
-router.post("/login", login);
+router.post("/login", loginRateLimiter, login);
 router.post("/refresh", refresh);
 
 // protected route

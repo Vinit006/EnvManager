@@ -2,10 +2,12 @@ import express from "express";
 import "dotenv/config";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import { morganMiddleware } from "./utils/logger.js";
 
 const app = express();
 
 // Middlewares
+app.use(morganMiddleware);
 app.use(
   cors({
     origin: "http://localhost:3000",
