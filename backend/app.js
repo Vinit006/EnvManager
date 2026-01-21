@@ -8,12 +8,18 @@ const app = express();
 // Middlewares
 app.use(
   cors({
-    origin: [
-           "https://yourenv.vercel.app",
-    ],
+    origin:
+      process.env.NODE_ENV === "production" ?
+        [
+          "https://yourenv.vercel.app",
+        ] :
+        [
+          "http://localhost:3000"
+        ],
     credentials: true,
   })
 );
+
 app.use(express.json());
 app.use(cookieParser());
 
