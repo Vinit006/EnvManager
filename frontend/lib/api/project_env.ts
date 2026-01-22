@@ -35,7 +35,7 @@ export function getProjects() {
           tags: ["projects"]
      });
 }
-export function createProject({ name }: { name: string }) {
+export function createProjectApi({ name }: { name: string }) {
      return apiFetch<any>(`${process.env.NEXT_PUBLIC_BACKEND_URL}/project`, {
           body: { name }, method: 'POST', token: true,
      });
