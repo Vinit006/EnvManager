@@ -17,6 +17,6 @@ router.post("/:projectId/env-files", createEnvFile);
 
 router.patch("/:projectId/env-files/:envId", updateEnvFile);
 router.delete("/:projectId/env-files/:envId", deleteEnvFile);
-router.delete("/:projectId/env-files/:envId", getEnvFileById);
+router.get("/:projectId/env-files/:envId", getEnvFileById);
 
 export default router;
