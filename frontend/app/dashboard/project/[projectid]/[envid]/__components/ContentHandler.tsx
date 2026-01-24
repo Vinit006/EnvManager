@@ -12,20 +12,21 @@ type Props = {
 }
 
 export default function ContentHandler({ envid, content, projectId }: Props) {
+
+     const onContentChange = useEnvStore((state) => state.onContentChange)
      const isEdit = useEnvStore((state) => state.isEdit)
      const [value, setValue] = useState<string>(content || '');
      const [isSaving, setIsSaving] = useState<Boolean>(false);
 
-     // 1. The actual Save Function (API Call)
      const saveToDb = useCallback(async (newValue: string) => {
-          if (newValue === content) return; // Don't save if it's the same as original
+          if (newValue === content) return;
 
           setIsSaving(true);
           try {
-               // Replace this with your actual API call or Zustand action
-               // await axios.patch(`/api/env/${envid}`, { content: newValue });
+               onContentChange(newValue);
                let res = await patchEnvById({ envId: envid, content: newValue, projectId: projectId });
                if (res.success) {
+
                     toast.success("Changes saved");
                }
                else {
@@ -38,9 +39,7 @@ export default function ContentHandler({ envid, content, projectId }: Props) {
           }
      }, [envid, content]);
 
-     // 2. The Debounce Effect
      useEffect(() => {
-          // If the user hasn't changed anything from the initial load, don't trigger save
           if (value === content) return;
 
           const delayDebounceFn = setTimeout(() => {
@@ -52,7 +51,6 @@ export default function ContentHandler({ envid, content, projectId }: Props) {
 
      return (
           <div className="relative  ">
-               {/* Visual indicator for UX */}
                {isSaving && (
                     <div className="absolute -top-6.25  left-0 text-sm  italic  opacity-70">
                          Saving...
