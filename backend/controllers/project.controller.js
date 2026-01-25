@@ -199,18 +199,26 @@ const shareProject = asyncHandler(async (req, res) => {
     throw new ApiError(400, "Can't share project with yourself");
   }
 
-  const duplicateSharing = project.sharedWith.some((user) =>
-    user.userId.equals(targetedUser._id),
-  );
-  if (duplicateSharing) {
-    throw new ApiError(400, "Project Already share with this user");
-  }
+  // const duplicateSharing = project.sharedWith.some((user) =>
+  //   user.userId.equals(targetedUser._id),
+  // );
+  // if (duplicateSharing) {
+  //   throw new ApiError(400, "Project Already share with this user");
+  // }
 
-  // share project
-  project.sharedWith.push({
-    userId: targetedUser._id,
-    role,
-  });
+  const existingShare = project.sharedWith.find((u) =>
+    u.userId.equals(targetedUser._id),
+  );
+
+  if (existingShare) {
+    existingShare.role = role;
+  } else {
+    // share project
+    project.sharedWith.push({
+      userId: targetedUser._id,
+      role,
+    });
+  }
 
   // save
   await project.save();
